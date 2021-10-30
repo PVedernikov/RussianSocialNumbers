@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace RussianSocialNumbers
+namespace GovCheck
 {
-    /*
-     Класс для проверки корректности контрольной суммы ИНН, СНИЛС 
-     */
+    /// <summary>
+    /// Класс для проверки корректности контрольной суммы ИНН, СНИЛС 
+    /// </summary>
     public static class RussianSocialNumbers
     {
-        /*
-        Проверка СНИЛС
-         */
+        /// <summary>
+        /// Проверка СНИЛС
+        /// </summary>
         public static bool IsSnilsValid(string snils)
         {
             if (string.IsNullOrEmpty(snils)
@@ -42,10 +39,9 @@ namespace RussianSocialNumbers
             return checkSum == Convert.ToInt32(snils.Substring(9));
         }
 
-
-        /*
-         Проверка ИНН
-         */
+        /// <summary>
+        /// Проверка ИНН
+        /// </summary>
         public static bool IsInnValid(string inn)
         {
             if (string.IsNullOrEmpty(inn)
