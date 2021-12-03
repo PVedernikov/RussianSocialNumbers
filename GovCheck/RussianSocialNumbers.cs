@@ -8,8 +8,37 @@ namespace GovCheck
     public static class RussianSocialNumbers
     {
         /// <summary>
-        /// Проверка СНИЛС
+        /// Проверка корректности контрольной суммы ОГРН или ОГРНИП
         /// </summary>
+        /// <param name="ogrn">ОГРН или ОГРНИП</param>
+        /// <returns></returns>
+        public static bool IsOgrnValid(string ogrn)
+        {
+            if (string.IsNullOrEmpty(ogrn)
+                || !System.Text.RegularExpressions.Regex.IsMatch(ogrn, @"^\d+$")
+                || (ogrn.Length != 13 && ogrn.Length != 15))
+            {
+                return false;
+            }
+
+            if (ogrn.Length == 13)
+            {
+                var n = Convert.ToInt64(ogrn.Substring(0, 12)) % 11 % 10;
+                return n == Convert.ToInt64(ogrn.Substring(12, 1));
+            }
+            if (ogrn.Length == 15)
+            {
+                var n = Convert.ToInt64(ogrn.Substring(0, 14)) % 13 % 10;
+                return n == Convert.ToInt64(ogrn.Substring(14, 1));
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Проверка корректности контрольной суммы СНИЛС
+        /// </summary>
+        /// <param name="snils">СНИЛС</param>
+        /// <returns></returns>
         public static bool IsSnilsValid(string snils)
         {
             if (string.IsNullOrEmpty(snils)
@@ -42,6 +71,8 @@ namespace GovCheck
         /// <summary>
         /// Проверка ИНН
         /// </summary>
+        /// <param name="inn">ИНН</param>
+        /// <returns></returns>
         public static bool IsInnValid(string inn)
         {
             if (string.IsNullOrEmpty(inn)
