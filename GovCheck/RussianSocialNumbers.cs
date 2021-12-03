@@ -3,7 +3,7 @@
 namespace GovCheck
 {
     /// <summary>
-    /// Класс для проверки корректности контрольной суммы ИНН, СНИЛС 
+    /// Класс для проверки корректности контрольной суммы ИНН, СНИЛС, ОГРН 
     /// </summary>
     public static class RussianSocialNumbers
     {
